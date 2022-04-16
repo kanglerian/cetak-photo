@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coba Accesskey</title>
+</head>
+<style>
+    #hasil {
+        margin-bottom: 20px;
+    }
+</style>
+<body>
+   
+    <div id="hasil">
+        <input type="number" id="width" placeholder="isi lebar">
+        <input type="number" id="height" placeholder="isi tinggi">
+        <input type="number" id="jumlah" placeholder="jumlah">
+        <button onclick="tambah()" id="tambah">Tambah</button>
+        <button onclick="cetak()" id="cetak">Cetak</button>
+    </div>
+    <script>
+        function hitung(){
+            var create = document.createElement("div");
+            var width = document.getElementById("width").value;
+            var height = document.getElementById("height").value;
+            create.style.display = "inline-block";
+            create.style.margin = "5px";
+            create.style.width = `${width}in`;
+            create.style.height = `${height}in`;
+            create.style.backgroundImage = "url('./pasfoto.jpg')";
+            create.style.backgroundSize = "cover";
+                document.body.appendChild(create);
+        }
+
+        function tambah() {
+        var jumlah = document.getElementById("jumlah").value;
+            for(var i=0; i < jumlah; i++){
+                hitung();
+            }
+        }
+
+        function cetak(){
+            var hasil = document.getElementById("hasil");
+            hasil.style.display = "none";
+            window.print();
+        }
+
+    </script>
+</body>
+</html>
