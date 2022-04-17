@@ -10,18 +10,82 @@
     #hasil {
         margin-bottom: 20px;
     }
+    #blah {
+        margin-top: 20px;
+    }
 </style>
 <body>
    
     <div id="hasil">
-        <input type="number" id="width" placeholder="isi lebar">
-        <input type="number" id="height" placeholder="isi tinggi">
-        <input type="number" id="jumlah" placeholder="jumlah">
-        <button onclick="tambah()" id="tambah">Tambah</button>
+        <input accept="image/*" type="file" id="imgInp" />
+        <input type="number" id="ye" placeholder="ye" value="0">
+        <input type="number" id="ex" placeholder="ex" value="0">
+        <select id="width">
+            <option value="1.11">3x4</option>
+            <option value="1.50">4x6</option>
+        </select>
+        <select id="height">
+            <option value="1.50">3x4</option>
+            <option value="2.20">4x6</option>
+        </select>
+        <button id="tambah">Tambah</button>
         <button onclick="cetak()" id="cetak">Cetak</button>
+        <div id="blah">
     </div>
     <script>
-        function hitung(){
+
+        var tambah = document.getElementById("tambah");
+        tambah.style.display = "none";
+
+        imgInp.onchange = () => {
+            var [file] = imgInp.files;
+            if (file) {
+                var width = document.getElementById("width").value;
+                var height = document.getElementById("height").value;
+                blah.style.width = `${width}in`;
+                blah.style.height = `${height}in`;
+                blah.style.backgroundImage = `url(${URL.createObjectURL(file)})`;
+                blah.style.backgroundSize = "cover";
+            }
+        }
+        
+        ye.onchange = () => {
+            var [file] = imgInp.files;
+            if (file) {
+                var width = document.getElementById("width").value;
+                var height = document.getElementById("height").value;
+                blah.style.width = `${width}in`;
+                blah.style.height = `${height}in`;
+                blah.style.backgroundImage = `url(${URL.createObjectURL(file)})`;
+                blah.style.backgroundSize = "cover";
+                var atas = document.getElementById("ye").value;
+                var samping = document.getElementById("ex").value;
+                blah.style.backgroundPosition = `${atas}px ${samping}px`;
+            }
+            tambah.style.display = "inline";
+        }
+
+        ex.onchange = () => {
+            var [file] = imgInp.files;
+            if (file) {
+                var width = document.getElementById("width").value;
+                var height = document.getElementById("height").value;
+                blah.style.width = `${width}in`;
+                blah.style.height = `${height}in`;
+                blah.style.backgroundImage = `url(${URL.createObjectURL(file)})`;
+                blah.style.backgroundSize = "cover";
+                var atas = document.getElementById("ye").value;
+                var samping = document.getElementById("ex").value;
+                blah.style.backgroundPosition = `${atas}px ${samping}px`;
+            }
+            tambah.style.display = "inline";
+        }
+
+
+        tambah.onclick = () => {
+            var [file] = imgInp.files;
+            var atas = document.getElementById("ye").value;
+            var samping = document.getElementById("ex").value;
             var create = document.createElement("div");
             var width = document.getElementById("width").value;
             var height = document.getElementById("height").value;
@@ -29,17 +93,18 @@
             create.style.margin = "5px";
             create.style.width = `${width}in`;
             create.style.height = `${height}in`;
-            create.style.backgroundImage = "url('./pasfoto.jpg')";
+            create.style.backgroundImage = `url(${URL.createObjectURL(file)})`;
             create.style.backgroundSize = "cover";
-                document.body.appendChild(create);
+            create.style.backgroundPosition = `${atas}px ${samping}px`;
+            document.body.appendChild(create);
         }
 
-        function tambah() {
-        var jumlah = document.getElementById("jumlah").value;
-            for(var i=0; i < jumlah; i++){
-                hitung();
-            }
-        }
+        // function tambah() {
+        // var jumlah = document.getElementById("jumlah").value;
+        //     for(var i=0; i < jumlah; i++){
+        //         hitung();
+        //     }
+        // }
 
         function cetak(){
             var hasil = document.getElementById("hasil");
